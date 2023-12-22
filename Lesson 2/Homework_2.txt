@@ -1,0 +1,57 @@
+-- task 1a
+SELECT *
+FROM Sales.SalesTerritory
+
+-- task 1b
+SELECT TerritoryID, Name
+FROM Sales.SalesTerritory
+
+-- task 1c
+SELECT *
+FROM Person.Person
+WHERE LastName='Norman'
+
+-- task 1d
+SELECT *
+FROM Person.Person
+WHERE EmailPromotion <> 2
+
+
+
+task 3
+GROUPING - Указывает, является ли указанное выражение столбца в списке GROUP BY статистическим или нет.
+STDEV - Возвращает статистическое стандартное отклонение всех значений в указанном выражении.
+APPROX_COUNT_DISTINCT - Возвращает приблизительное количество уникальных значений, не равных NULL, в группе.
+
+
+-- task 4a
+SELECT COUNT(DISTINCT(PersonType))
+FROM Person.Person
+WHERE LastName LIKE 'M%'
+	OR EmailPromotion <> 1
+
+-- task 4b
+SELECT TOP 3 *
+FROM Sales.SpecialOffer
+WHERE StartDate BETWEEN '2013-01-01' AND '2014-01-01'
+ORDER BY DiscountPct DESC
+
+-- task 4c
+SELECT MIN(Weight) AS MaxWeight
+	, MAX(Size) AS MaxSize
+FROM Production.Product
+
+-- task 4d
+SELECT ProductSubcategoryID
+	, MIN(Weight) AS MaxWeight
+	, MAX(Size) AS MaxSize
+FROM Production.Product
+GROUP BY ProductSubcategoryID
+
+-- task 4e
+SELECT ProductSubcategoryID
+	, MIN(Weight) AS MaxWeight
+	, MAX(Size) AS MaxSize
+FROM Production.Product
+WHERE Color IS NOT NULL
+GROUP BY ProductSubcategoryID

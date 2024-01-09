@@ -1,0 +1,43 @@
+--task 1
+SELECT *
+FROM Водители
+WHERE Стаж NOT IN (3, 5, 6, 10)
+	AND Место прописки = 'eee'
+
+
+--task 2
+SELECT v.№ паспорта
+FROM Водители AS v
+LEFT JOIN Диспетчерская AS d on d.Код водителя = v.Код водителя
+WHERE d.Код водителя IS NULL
+
+--task 3
+SELECT a.Регистрационный № авто, d.Время прибытия, d.Время отбытия, m.Пункт назначения
+FROM Автомобили as a
+LEFT JOIN Диспетчерская as d on d.Код авто = a.Код авто
+LEFT JOIN Маршрут as m on d.Путевка = a.Код маршрута
+WHERE Год выпуска авто = 2015
+
+
+--task 1
+SELECT LEFT(FIRST_NAME,1) as first_letter
+	, COUNT(EMPLOYEE_ID) AS count_of_emp
+FROM EMPLOYEES
+GROUP BY LEFT(FIRST_NAME,1)
+HAVING COUNT(EMPLOYEE_ID) >1
+ORDER BY COUNT(EMPLOYEE_ID) DESC
+
+--task 2
+SELECT DEPARTMENT_ID, SALARY, COUNT(EMPLOYEE_ID) AS employee_Count
+FROM EMPLOYEES
+GROUP BY DEPARTMENT_ID, SALARY
+
+--task 3
+SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME
+FROM EMPLOYEES
+WHERE MANAGER_ID IS NULL
+
+--task 4
+SELECT FIRST_NAME
+FROM EMPLOYEES
+WHERE LEN(FIRST_NAME) = (SELECT MAX(LEN(FIRST_NAME)) FROM EMPLOYEES)
